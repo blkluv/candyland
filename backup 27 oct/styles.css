@@ -1,0 +1,231 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    overflow: hidden; /* Отключаем прокрутку тела страницы */
+}
+
+/* Navigation container styles */
+#nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logo and nav items */
+    padding: 10px;
+    width: 100%;
+}
+
+/* Logo styles */
+#logo {
+    width: 50px;
+    height: auto;
+}
+
+/* Navigation menu styles */
+#nav-menu {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    position: absolute; /* Overlay on top of content */
+    top: 60px; /* Adjust based on your header height */
+    right: 0;
+    background-color: black; /* Match background */
+    border: 1px solid #333;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* Styles for navigation items */
+.nav-item {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+    background-color: #293575; /* Background on hover */
+}
+
+/* Title container */
+#title-container {
+    text-align: center;
+    margin: 5px 0 10px 0;
+}
+
+/* Title styles */
+#map-title {
+    font-size: 2.25rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+#map-subtitle {
+    font-size: 0.74rem; /* Уменьшено на 30% */
+    color: #ffffff;
+    margin: 0;
+} 
+
+/* Map container styles */
+#map-container {
+    display: grid;
+    grid-template-columns: repeat(44, 36px);
+    grid-template-rows: repeat(44, 36px);
+    gap: 1px;
+    border: 2px solid #333;
+    max-height: 80vh; /* Задаем максимальную высоту для карты */
+    max-width: 90vw; /* Задаем максимальную ширину для карты */
+    width: 100%; /* Занимает всю ширину экрана */
+    height: calc(80vh - 20px); /* Уменьшаем отступ снизу для большей высоты карты */
+    overflow: auto; /* Прокрутка, если контент превышает размер контейнера */
+    margin: 0; /* Убираем все отступы */
+    padding-bottom: 10px; /* Убираем отступ снизу, если это необходимо */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    #map-container {
+        grid-template-columns: repeat(44, 36px); /* 44 колонки */
+        grid-template-rows: repeat(44, 36px); /* 44 строки */
+    }
+}
+
+/* Each square on the map */
+.square {
+    width: 36px;
+    height: 36px;
+    background-color: #ddd;
+    background-size: cover;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+/* Selected square */
+.square.selected {
+    border: 2px solid red;
+}
+
+/* Hover effects for square */
+.square:hover {
+    background-color: #aaa;
+    border: 2px solid blue;
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* Pop-up styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Styles for the popup content */
+.popup-content {
+    background-color: #fff;
+    border: 3px solid black; /* Черная окантовка */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Внешняя тень для объема */
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px; /* Default width for desktop */
+    position: relative; /* Allow positioning of the close button */
+    z-index: 10; /* Убедимся, что окно находится над другими элементами */
+}
+
+/* Добавление стилей для параграфов в поп-апе */
+.popup-content p {
+    line-height: 1.2; /* Установите желаемое значение */
+    margin: 5px 0; /* Уменьшение отступа между абзацами */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 90%; /* Set width to 90% on mobile */
+        height: auto; /* Allow height to adjust based on content */
+        max-height: 90%; /* Set max height to 90% */
+        overflow-y: auto; /* Enable vertical scrolling if needed */
+    }
+}
+
+.popup-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Close button styles */
+.close-button {
+    cursor: pointer; /* Pointer cursor on hover */
+    position: absolute; /* Position within the pop-up */
+    top: 10px; /* Position from top */
+    right: 20px; /* Position from right */
+    font-size: 36px; /* Size of the close button */
+    color: black; /* Color of the close button */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.close-button:hover {
+    color: red; /* Change color on hover */
+}
+
+/* Button container for alignment */
+.button-container {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+
+/* Buy button styles */
+.mint-me-button {
+    display: inline-block;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.mint-me-button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.mint-paypal-button {
+    display: inline-block;
+    background-color: #0070BA; /* Цвет PayPal */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.mint-paypal-button:hover {
+    background-color: #005A94; /* Темнее на hover */
+}

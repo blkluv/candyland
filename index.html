@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map - BitVille District</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <meta name="google-site-verification" content="QF5Fs7Cen8vNbcwE-ApVxyumFPuU3UWBVRiSD15RWIw">
+</head>
+<body>
+    <!-- Header with Logo and Auth buttons -->
+    <header id="header">
+        <div id="nav-container">
+            <a href="https://rainbowland.org/" target="_blank" id="logo-link">
+                <img src="images/logo-r.webp" alt="Logo" id="logo">
+            </a>
+            <div id="auth-buttons">
+                <button onclick="login()" id="login-btn">Login</button>
+                <button onclick="logout()" id="logout-btn" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="title-container">
+        <h1 id="map-title">BitVille District</h1>
+        <h2 id="map-subtitle">
+            The BitVille district's 1,936 individual LAND parcels stretch from (178, 118) to (221, 118) and from (178, 161) to (221, 161). It is part of The Rainbowland Metaverse.
+        </h2>
+    </div>
+
+    <!-- Container for the map -->
+    <div id="map-container"></div>
+
+    <!-- Pop-up for plot details -->
+    <div id="popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <img id="popup-image" src="" alt="Plot Image">
+            <h3 id="popup-title">Plot Details</h3>
+            <div class="button-container">
+                <a id="mint-me-button" class="mint-me-button" href="#" target="_blank">Mint with Crypto</a>
+                <a id="mint-paypal-button" class="mint-paypal-button" href="#" target="_blank">Mint with PayPal</a>
+            </div>
+            <p><strong>🌆 District:</strong> <span id="popup-district"></span></p>
+            <p><strong>🌟 Rarity:</strong> <span id="popup-rarity"></span></p>
+            <p><strong>💰 Minerals:</strong> <span id="popup-minerals"></span></p>
+            <p><strong>💧 Water:</strong> <span id="popup-water"></span></p>
+            <p><strong>🏠 Land Type:</strong> <span id="popup-land-type"></span></p>
+            <p><strong>📈 Income:</strong> <span id="popup-income"></span></p>
+            <p><strong>🌊 View:</strong> <span id="popup-view"></span></p>
+            <p><strong>📦 Storage:</strong> <span id="popup-storage"></span></p>
+        </div>
+    </div>
+
+    <!-- Sign-up Pop-up -->
+    <div id="signup-popup" class="popup" style="display: none;">
+        <div class="popup-content signup-popup-content">
+            <span class="close-button" onclick="closeSignupPopup()">&times;</span>
+            <h3>Join the Early Access</h3>
+            <p>Sign up for early access to participate in the game testing!</p>
+            <input type="email" id="email-input" placeholder="Enter your email" required>
+            <button id="signup-button">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("ZFUUgFIGL-KrMtI_y"); // Replace with your actual public key
+       })();
+    </script>
+
+    <!-- Include Auth0 JS SDK -->
+    <script src="https://cdn.auth0.com/js/auth0/9.18.0/auth0.min.js"></script>
+
+    <script type="text/javascript">
+      // Создайте экземпляр Auth0
+      const auth0 = new auth0.WebAuth({
+        domain: 'https://bitville.web.app',  // Замените YOUR_DOMAIN на ваш домен в Auth0
+        clientID: 'JlebraHVInbaQikTi63xWhxjB8uOtMLP',  // Замените YOUR_CLIENT_ID на ваш Client ID
+        redirectUri: window.location.origin,  // URL для перенаправления после входа
+        responseType: 'token id_token',  // Тип ответа
+        scope: 'openid profile email'  // Запрашиваемые данные
+      });
+
+      // Функция для обработки ответа от Auth0 после входа
+      function handleAuthentication() {
+        auth0.parseHash((err, authResult) => {
+          if (authResult && authResult.accessToken && authResult.idToken) {
+            // Сохраняем токены в локальном хранилище
+            localStorage.setItem('access_token', authResult.accessToken);
+            localStorage.setItem('id_token', authResult.idToken);
+
+            // Получаем информацию о пользователе и сохраняем в локальное хранилище
+            auth0.client.userInfo(authResult.accessToken, (err, profile) => {
+              if (profile) {
+                localStorage.setItem('profile', JSON.stringify(profile));
+                console.log("User profile: ", profile);
+                document.getElementById('login-btn').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'block';
+              }
+            });
+          } else if (err) {
+            console.error("Error: ", err);
+          }
+        });
+      }
+
+      // Вход пользователя
+      function login() {
+        auth0.authorize(); // Открывает окно для входа/регистрации
+      }
+
+      // Выход пользователя
+      function logout() {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('profile');
+        window.location.href = window.location.origin; // Перенаправляем на главную страницу
+      }
+
+      // Проверка состояния аутентификации
+      function isAuthenticated() {
+        return localStorage.getItem('access_token') != null;
+      }
+
+      // Вызов обработки аутентификации при загрузке страницы
+      window.onload = () => {
+        handleAuthentication();
+        if (isAuthenticated()) {
+          document.getElementById('login-btn').style.display = 'none';
+          document.getElementById('logout-btn').style.display = 'block';
+          const profile = JSON.parse(localStorage.getItem('profile'));
+          document.write(`<p>Welcome, ${profile.name}</p>`);
+        }
+      };
+    </script>
+
+    <!-- Custom scripts -->
+    <script src="script.js"></script> 
+</body>
+</html>
