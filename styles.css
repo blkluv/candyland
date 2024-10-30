@@ -1,6 +1,6 @@
 /* General styles */
 * {
-    box-sizing: border-box; /* Учитывать границы и отступы в размерах */
+    box-sizing: border-box; /* Include borders and padding in element dimensions */
 }
 
 body {
@@ -12,7 +12,7 @@ body {
     height: 100vh;
     background-color: black;
     color: white;
-    overflow: hidden; /* Отключаем прокрутку тела страницы */
+    overflow: hidden; /* Disable page body scroll */
 }
 
 /* Sign-up Pop-up styles */
@@ -23,55 +23,55 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Выше остальных элементов */
+    z-index: 1000; /* Position above all other elements */
 }
 
 .signup-popup-content,
 .popup-content {
-    width: 90%; /* Использовать 90% ширины на мобильных устройствах */
-    max-width: 400px; /* Максимальная ширина для настольных ПК */
+    width: 90%; /* 90% width on mobile */
+    max-width: 400px; /* Max width for desktops */
     padding: 20px;
-    background-color: white; /* Белый фон для содержимого */
-    color: black; /* Черный текст */
-    border-radius: 10px; /* Закругленные углы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    background-color: white; /* White background for content */
+    color: black; /* Black text color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
 }
 
 /* Input styles */
 #email-input {
-    width: 100%; /* Полная ширина */
+    width: 100%; /* Full width */
     padding: 10px;
-    margin: 10px 0 20px 0; /* Упрощено */
-    border: 1px solid #ccc; /* Легкая граница */
-    border-radius: 5px; /* Закругленные углы */
+    margin: 10px 0 20px 0; /* Simplified margins */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
 }
 
 /* Sign-up button styles */
 #signup-button {
     display: inline-block;
-    background-color: #4CAF50; /* Зеленый */
+    background-color: #4CAF50; /* Green color */
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%; /* Полная ширина кнопки */
+    width: 100%; /* Full button width */
 }
 
 #signup-button:hover {
-    background-color: #45a049; /* Темно-зеленый при наведении */
+    background-color: #45a049; /* Dark green on hover */
 }
 
 /* Navigation container styles */
 #nav-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Пробел между логотипом и навигацией */
+    justify-content: space-between; /* Space between logo and navigation */
     padding: 10px;
     width: 100%;
 }
@@ -85,13 +85,13 @@ body {
 /* Navigation menu styles */
 #nav-menu {
     display: flex;
-    align-items: center; /* Центрировать элементы вертикально */
-    position: absolute; /* Накладывать поверх контента */
-    top: 60px; /* Подкорректировать в зависимости от высоты заголовка */
+    align-items: center; /* Vertically center items */
+    position: absolute; /* Overlay content */
+    top: 60px; /* Adjust based on header height */
     right: 0;
-    background-color: black; /* Цвет фона совпадает */
+    background-color: black; /* Background matches */
     border: 1px solid #333;
-    z-index: 1000; /* Убедиться, что меню выше остальных элементов */
+    z-index: 1000; /* Ensure the menu is above other elements */
 }
 
 /* Styles for navigation items */
@@ -103,7 +103,7 @@ body {
 }
 
 .nav-item:hover {
-    background-color: #293575; /* Фон при наведении */
+    background-color: #293575; /* Background on hover */
 }
 
 /* Title container */
@@ -120,7 +120,7 @@ body {
 }
 
 #map-subtitle {
-    font-size: 0.74rem; /* Уменьшено на 30% */
+    font-size: 0.74rem; /* Reduced by 30% */
     color: #ffffff;
     margin: 0;
 }
@@ -132,25 +132,25 @@ body {
     grid-template-rows: repeat(44, 36px);
     gap: 1px;
     border: 2px solid #333;
-    max-height: 80vh; /* Задаем максимальную высоту для карты */
-    max-width: 90vw; /* Задаем максимальную ширину для карты */
-    width: 100%; /* Занимает всю ширину экрана */
-    height: calc(80vh - 20px); /* Уменьшаем отступ снизу для большей высоты карты */
-    overflow: auto; /* Прокрутка, если контент превышает размер контейнера */
-    margin: 0; /* Убираем все отступы */
-    padding-bottom: 10px; /* Убираем отступ снизу, если это необходимо */
+    max-height: 80vh; /* Max height for map */
+    max-width: 90vw; /* Max width for map */
+    width: 100%; /* Full screen width */
+    height: calc(80vh - 20px); /* Reduced bottom margin for more height */
+    overflow: auto; /* Scroll if content exceeds container size */
+    margin: 0; /* Remove all margins */
+    padding-bottom: 10px; /* Optional bottom padding */
 }
 
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     #map-container {
-        grid-template-columns: repeat(44, 36px); /* 44 колонки */
-        grid-template-rows: repeat(44, 36px); /* 44 строки */
+        grid-template-columns: repeat(44, 36px); /* 44 columns */
+        grid-template-rows: repeat(44, 36px); /* 44 rows */
     }
 
     .signup-popup-content,
     .popup-content {
-        width: 90%; /* Использовать 90% ширины на мобильных устройствах */
+        width: 90%; /* 90% width on mobile */
     }
 }
 
@@ -184,36 +184,36 @@ body {
     border-radius: 5px;
     font-size: 0.8rem;
     display: none; /* Hidden by default */
-    z-index: 1000; /* Ensure it appears above other content */
+    z-index: 1000; /* Above other content */
 }
 
 /* Pop-up styles */
 .popup-content {
     background-color: #fff;
-    border: 3px solid black; /* Черная окантовка */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Внешняя тень для объема */
+    border: 3px solid black; /* Black border */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Shadow for depth */
     color: black;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 300px; /* Default width for desktop */
-    position: relative; /* Allow positioning of the close button */
-    z-index: 10; /* Убедимся, что окно находится над другими элементами */
+    position: relative; /* For positioning close button */
+    z-index: 10; /* Above other elements */
 }
 
-/* Добавление стилей для параграфов в поп-апе */
+/* Styles for paragraphs within pop-up */
 .popup-content p {
-    line-height: 1.2; /* Установите желаемое значение */
-    margin: 5px 0; /* Уменьшение отступа между абзацами */
+    line-height: 1.2; /* Set desired line spacing */
+    margin: 5px 0; /* Reduce paragraph spacing */
 }
 
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     .popup-content {
-        width: 90%; /* Set width to 90% on mobile */
-        height: auto; /* Allow height to adjust based on content */
-        max-height: 90%; /* Set max height to 90% */
-        overflow-y: auto; /* Enable vertical scrolling if needed */
+        width: 90%; /* 90% width on mobile */
+        height: auto; /* Auto height based on content */
+        max-height: 90%; /* Max height at 90% */
+        overflow-y: auto; /* Enable vertical scroll if needed */
     }
 }
 
@@ -225,13 +225,13 @@ body {
 
 /* Close button styles */
 .close-button {
-    cursor: pointer; /* Pointer cursor on hover */
-    position: absolute; /* Position within the pop-up */
+    cursor: pointer; /* Pointer on hover */
+    position: absolute; /* Position within pop-up */
     top: 10px; /* Position from top */
     right: 20px; /* Position from right */
-    font-size: 36px; /* Size of the close button */
-    color: black; /* Color of the close button */
-    transition: color 0.3s; /* Smooth transition for hover effect */
+    font-size: 36px; /* Size of close button */
+    color: black; /* Close button color */
+    transition: color 0.3s; /* Smooth color transition on hover */
 }
 
 .close-button:hover {
@@ -264,7 +264,7 @@ body {
 
 .mint-paypal-button {
     display: inline-block;
-    background-color: #0070BA; /* Цвет PayPal */
+    background-color: #0070BA; /* PayPal color */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -274,5 +274,5 @@ body {
 }
 
 .mint-paypal-button:hover {
-    background-color: #005a8e; /* Темнее при наведении */
+    background-color: #005a8e; /* Darker on hover */
 }

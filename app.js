@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-// Замените CLIENT_ID, CLIENT_SECRET и REDIRECT_URI на ваши данные
+// Change CLIENT_ID, CLIENT_SECRET and REDIRECT_URI
 const CLIENT_ID = 'YOUR_CLIENT_ID';
 const CLIENT_SECRET = 'YOUR_CLIENT_SECRET';
 const REDIRECT_URI = 'YOUR_REDIRECT_URI';
-const SPREADSHEET_ID = '1QmunGnQZ-z_gITz8K4YAVWTiJQjvAnCd1PP3_WUCEVg'; // ID вашей таблицы
+const SPREADSHEET_ID = '1QmunGnQZ-z_gITz8K4YAVWTiJQjvAnCd1PP3_WUCEVg'; // ID
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
@@ -16,7 +16,7 @@ const oauth2Client = new google.auth.OAuth2(
     REDIRECT_URI
 );
 
-// Укажите свои учетные данные
+// 
 oauth2Client.setCredentials({
     refresh_token: 'YOUR_REFRESH_TOKEN'
 });
@@ -30,10 +30,10 @@ app.post('/submit-email', async (req, res) => {
     try {
         const response = await sheets.spreadsheets.values.append({
             spreadsheetId: SPREADSHEET_ID,
-            range: 'Sheet1!A:A', // Укажите диапазон, куда хотите записать
+            range: 'Sheet1!A:A', // 
             valueInputOption: 'RAW',
             resource: {
-                values: [[email]], // Записываем email в таблицу
+                values: [[email]], // 
             },
         });
         res.status(200).send('Email добавлен в таблицу!');
@@ -43,7 +43,7 @@ app.post('/submit-email', async (req, res) => {
     }
 });
 
-// Запуск сервера
+// 
 app.listen(port, () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
 });

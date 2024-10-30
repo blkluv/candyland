@@ -158,9 +158,9 @@ window.onload = function() {
         // Load the user's data or update the UI accordingly
         const profile = JSON.parse(localStorage.getItem('profile'));
         console.log("User authenticated:", profile);
-        // Здесь вы можете обновить интерфейс, например, отобразить информацию о пользователе
+        // 
     } else {
-        // Если пользователь не аутентифицирован, вы можете выполнить какие-либо действия
+        // 
         console.log("User not authenticated");
     }
 };

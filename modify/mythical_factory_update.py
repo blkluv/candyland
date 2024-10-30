@@ -1,14 +1,14 @@
 import json
 import random
 
-# Путь к JSON файлу
+# 
 file_path = 'data/plots.json'
 
-# Загрузка данных из JSON файла
+# 
 with open(file_path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
-# Функция для генерации случайного элемента из таблицы Менделеева
+#
 def random_mineral():
     elements = [
         "Hydrogen", "Helium", "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", 
@@ -29,14 +29,14 @@ def random_mineral():
     ]
     return random.choice(elements)
 
-# Список изображений для обновления данных
+# 
 images_to_update = [
     "images/factory.png"
 ]
 
-# Обновляем данные для всех участков
+# 
 for plot in data:
-    if plot.get("image") in images_to_update:  # Проверка на наличие изображения в списке
+    if plot.get("image") in images_to_update:  # 
         plot["🏠 Land Type"] = "Factory"
         plot["💰 Minerals"] = random_mineral()
         plot["🌟 Rarity"] = "Mythical"
@@ -46,7 +46,7 @@ for plot in data:
         plot["📦 Storage"] = str(random.randint(500, 1000))
         plot["link"] = "https://commerce.coinbase.com/checkout/bb95a990-6c8e-44ef-9e3d-ef22472bf76e"
 
-# Сохранение обновленных данных обратно в файл
+# 
 with open(file_path, 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
 

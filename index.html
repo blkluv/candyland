@@ -75,24 +75,24 @@
     <script src="https://cdn.auth0.com/js/auth0/9.18.0/auth0.min.js"></script>
 
     <script type="text/javascript">
-      // Создайте экземпляр Auth0
+      // 
       const auth0 = new auth0.WebAuth({
-        domain: 'https://bitville.web.app',  // Замените YOUR_DOMAIN на ваш домен в Auth0
-        clientID: 'JlebraHVInbaQikTi63xWhxjB8uOtMLP',  // Замените YOUR_CLIENT_ID на ваш Client ID
-        redirectUri: window.location.origin,  // URL для перенаправления после входа
-        responseType: 'token id_token',  // Тип ответа
-        scope: 'openid profile email'  // Запрашиваемые данные
+        domain: 'https://bitville.web.app',  // 
+        clientID: 'JlebraHVInbaQikTi63xWhxjB8uOtMLP',  // 
+        redirectUri: window.location.origin,  // 
+        responseType: 'token id_token',  // 
+        scope: 'openid profile email'  // 
       });
 
-      // Функция для обработки ответа от Auth0 после входа
+      // 
       function handleAuthentication() {
         auth0.parseHash((err, authResult) => {
           if (authResult && authResult.accessToken && authResult.idToken) {
-            // Сохраняем токены в локальном хранилище
+            // 
             localStorage.setItem('access_token', authResult.accessToken);
             localStorage.setItem('id_token', authResult.idToken);
 
-            // Получаем информацию о пользователе и сохраняем в локальное хранилище
+            // 
             auth0.client.userInfo(authResult.accessToken, (err, profile) => {
               if (profile) {
                 localStorage.setItem('profile', JSON.stringify(profile));
@@ -107,9 +107,9 @@
         });
       }
 
-      // Вход пользователя
+      // 
       function login() {
-        auth0.authorize(); // Открывает окно для входа/регистрации
+        auth0.authorize(); // 
       }
 
       // Выход пользователя
@@ -117,15 +117,15 @@
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
-        window.location.href = window.location.origin; // Перенаправляем на главную страницу
+        window.location.href = window.location.origin; // 
       }
 
-      // Проверка состояния аутентификации
+      // 
       function isAuthenticated() {
         return localStorage.getItem('access_token') != null;
       }
 
-      // Вызов обработки аутентификации при загрузке страницы
+      // 
       window.onload = () => {
         handleAuthentication();
         if (isAuthenticated()) {
