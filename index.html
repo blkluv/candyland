@@ -3,231 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Z🅰️DDY Roulette 🎲 | Collect 3-Word NFTs</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background: #000;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-        .game-container {
-            max-width: 100%;
-            margin: 0 auto;
-            border: 3px solid #00ff88;
-            border-radius: 16px;
-            padding: 20px;
-            background: #111;
-            position: relative;
-        }
-        h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, #ff00cc, #3333ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-        }
-        .dice-emoji {
-            font-size: 120px;
-            cursor: pointer;
-            margin: 20px 0;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .result {
-            font-size: 24px;
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 12px;
-            background: #222;
-        }
-        .nft-card {
-            border: 2px solid #00ff88;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 300px;
-            background: #1a1a1a;
-            position: relative;
-        }
-        .nft-emoji {
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-        .w3w {
-            font-family: monospace;
-            color: #00ff88;
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .social-share {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .share-btn {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-        }
-        .chain-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #8a2be2;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .leaderboard {
-            margin-top: 30px;
-            border-top: 1px solid #333;
-            padding-top: 20px;
-        }
-    </style>
+    <title>Interactive Map - BitVille District</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <meta name="google-site-verification" content="QF5Fs7Cen8vNbcwE-ApVxyumFPuU3UWBVRiSD15RWIw">
 </head>
 <body>
-    <div class="game-container">
-        <h1>🎲 Z🅰️DDY Roulette 🌿</h1>
-        <p>Roll to mint a 3-word NFT & unlock IRL dispensary perks!</p>
-        
-        <div class="dice-emoji" id="dice">🎲</div>
-        <button onclick="rollDice()" style="background: linear-gradient(90deg, #ff00cc, #3333ff); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 18px; cursor: pointer; font-weight: bold;">
-            SPIN TO MINT 🚀
-        </button>
-        
-        <div class="result" id="result"></div>
-        
-        <div class="nft-card" id="nftCard" style="display: none;">
-            <div class="chain-badge">BASE</div>
-            <div class="nft-emoji" id="nftEmoji"></div>
-            <div class="w3w" id="nftAddress"></div>
-            <p id="nftReward"></p>
-            <div class="social-share">
-                <button class="share-btn" onclick="shareToTikTok()"><img src="https://www.freepnglogos.com/uploads/tik-tok-logo-png/tik-tok-logo-vectors-9.png" width="20"> Duet This</button>
-                <button class="share-btn" onclick="shareToTwitter()">🐦 Tweet</button>
+    <!-- Header with Logo and Auth buttons -->
+    <header id="header">
+        <div id="nav-container">
+            <a href="https://rainbowland.org/" target="_blank" id="logo-link">
+                <img src="images/logo-r.webp" alt="Logo" id="logo">
+            </a>
+            <div id="auth-buttons">
+                <button onclick="login()" id="login-btn">Login</button>
+                <button onclick="logout()" id="logout-btn" style="display: none;">Logout</button>
             </div>
         </div>
-        
-        <div class="leaderboard">
-            <h3>🔥 Today's Top Collectors</h3>
-            <ol style="text-align: left; max-width: 300px; margin: 0 auto;">
-                <li>@420Queen - 8 Z🅰️DDYs</li>
-                <li>@DankMemeLord - 5 Z🅰️DDYs</li>
-                <li>@CryptoZaddy - 3 Z🅰️DDYs</li>
-            </ol>
+    </header>
+
+    <div id="title-container">
+        <h1 id="map-title">BitVille District</h1>
+        <h2 id="map-subtitle">
+            The BitVille district's 1,936 individual LAND parcels stretch from (178, 118) to (221, 118) and from (178, 161) to (221, 161). It is part of The Rainbowland Metaverse.
+        </h2>
+    </div>
+
+    <!-- Container for the map -->
+    <div id="map-container"></div>
+
+    <!-- Pop-up for plot details -->
+    <div id="popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <img id="popup-image" src="" alt="Plot Image">
+            <h3 id="popup-title">Plot Details</h3>
+            <div class="button-container">
+                <a id="mint-me-button" class="mint-me-button" href="#" target="_blank">Mint with Crypto</a>
+                <a id="mint-paypal-button" class="mint-paypal-button" href="#" target="_blank">Mint with PayPal</a>
+            </div>
+            <p><strong>🌆 District:</strong> <span id="popup-district"></span></p>
+            <p><strong>🌟 Rarity:</strong> <span id="popup-rarity"></span></p>
+            <p><strong>💰 Minerals:</strong> <span id="popup-minerals"></span></p>
+            <p><strong>💧 Water:</strong> <span id="popup-water"></span></p>
+            <p><strong>🏠 Land Type:</strong> <span id="popup-land-type"></span></p>
+            <p><strong>📈 Income:</strong> <span id="popup-income"></span></p>
+            <p><strong>🌊 View:</strong> <span id="popup-view"></span></p>
+            <p><strong>📦 Storage:</strong> <span id="popup-storage"></span></p>
         </div>
     </div>
 
-    <script>
-        const rewards = [
-            { emoji: "🍁", w3w: "///zaddy.weed.fire", reward: "10% OFF + NFT Badge" },
-            { emoji: "💎", w3w: "///blunt.diamond.high", reward: "Free Pre-Roll (with purchase)" },
-            { emoji: "🚀", w3w: "///smoke.launch.moon", reward: "20% OFF Edibles" },
-            { emoji: "🎰", w3w: "///lucky.dice.puff", reward: "Spin Our Prize Wheel" },
-            { emoji: "🛒", w3w: "///cart.full.send", reward: "$5 Credit Next Visit" },
-            { emoji: "🏆", w3w: "///gold.trophy.zaddy", reward: "MYSTERY BOX NFT" }
-        ];
+    <!-- Sign-up Pop-up -->
+    <div id="signup-popup" class="popup" style="display: none;">
+        <div class="popup-content signup-popup-content">
+            <span class="close-button" onclick="closeSignupPopup()">&times;</span>
+            <h3>Join the Early Access</h3>
+            <p>Sign up for early access to participate in the game testing!</p>
+            <input type="email" id="email-input" placeholder="Enter your email" required>
+            <button id="signup-button">Sign Up</button>
+        </div>
+    </div>
 
-        function rollDice() {
-            // Disable button during animation
-            document.querySelector('button').disabled = true;
-            
-            // Dice roll animation
-            let rolls = 0;
-            const dice = document.getElementById('dice');
-            const rollInterval = setInterval(() => {
-                dice.textContent = ['⚀','⚁','⚂','⚃','⚄','⚅'][Math.floor(Math.random() * 6)];
-                rolls++;
-                if (rolls > 10) {
-                    clearInterval(rollInterval);
-                    showResult();
-                }
-            }, 100);
-        }
-
-        function showResult() {
-            const roll = Math.floor(Math.random() * 6);
-            const reward = rewards[roll];
-            
-            document.getElementById('result').innerHTML = `
-                🎉 <strong>You won:</strong> ${reward.reward}
-            `;
-            
-            // Show NFT card
-            document.getElementById('nftEmoji').textContent = reward.emoji;
-            document.getElementById('nftAddress').textContent = reward.w3w;
-            document.getElementById('nftReward').textContent = `🏷️ ${reward.reward}`;
-            document.getElementById('nftCard').style.display = 'block';
-            
-            // Re-enable button
-            document.querySelector('button').disabled = false;
-            
-            // Trigger confetti
-            if (roll === 5) { // Special effect for jackpot
-                triggerConfetti();
-            }
-        }
-
-        function shareToTikTok() {
-            const reward = document.getElementById('nftReward').textContent;
-            const w3w = document.getElementById('nftAddress').textContent;
-            alert(`📲 Open TikTok and duet with @YourDispensary!\n\n"Just minted ${w3w} and scored ${reward} #ZaddyRoulette"`);
-        }
-
-        function shareToTwitter() {
-            const reward = document.getElementById('nftReward').textContent;
-            const w3w = document.getElementById('nftAddress').textContent;
-            const text = encodeURIComponent(`Just scored ${reward} by minting ${w3w} on #ZaddyRoulette! 🎲🌿 @YourDispensary`);
-            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
-        }
-
-        function triggerConfetti() {
-            // Simple confetti effect
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.position = 'fixed';
-                confetti.style.width = '10px';
-                confetti.style.height = '10px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-10px';
-                confetti.style.borderRadius = '50%';
-                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-            
-            // Add CSS animation
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes fall {
-                    to { transform: translateY(100vh) rotate(360deg); }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+    <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("ZFUUgFIGL-KrMtI_y"); // Replace with your actual public key
+       })();
     </script>
+
+    <!-- Include Auth0 JS SDK -->
+    <script src="https://cdn.auth0.com/js/auth0/9.18.0/auth0.min.js"></script>
+
+    <script type="text/javascript">
+      // 
+      const auth0 = new auth0.WebAuth({
+        domain: 'https://bitville.web.app',  // 
+        clientID: 'JlebraHVInbaQikTi63xWhxjB8uOtMLP',  // 
+        redirectUri: window.location.origin,  // 
+        responseType: 'token id_token',  // 
+        scope: 'openid profile email'  // 
+      });
+
+      // 
+      function handleAuthentication() {
+        auth0.parseHash((err, authResult) => {
+          if (authResult && authResult.accessToken && authResult.idToken) {
+            // 
+            localStorage.setItem('access_token', authResult.accessToken);
+            localStorage.setItem('id_token', authResult.idToken);
+
+            // 
+            auth0.client.userInfo(authResult.accessToken, (err, profile) => {
+              if (profile) {
+                localStorage.setItem('profile', JSON.stringify(profile));
+                console.log("User profile: ", profile);
+                document.getElementById('login-btn').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'block';
+              }
+            });
+          } else if (err) {
+            console.error("Error: ", err);
+          }
+        });
+      }
+
+      // 
+      function login() {
+        auth0.authorize(); // 
+      }
+
+      // User logout
+      function logout() {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('profile');
+        window.location.href = window.location.origin; // 
+      }
+
+      // 
+      function isAuthenticated() {
+        return localStorage.getItem('access_token') != null;
+      }
+
+      // 
+      window.onload = () => {
+        handleAuthentication();
+        if (isAuthenticated()) {
+          document.getElementById('login-btn').style.display = 'none';
+          document.getElementById('logout-btn').style.display = 'block';
+          const profile = JSON.parse(localStorage.getItem('profile'));
+          document.write(`<p>Welcome, ${profile.name}</p>`);
+        }
+      };
+    </script>
+
+    <!-- Custom scripts -->
+    <script src="script.js"></script> 
 </body>
 </html>
